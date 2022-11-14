@@ -1,0 +1,19 @@
+{
+    "name": "komputer/my_mvc_framework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marcin Kowalski",
+            "email": "marcin.wojciech.kowalski@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "v3.4.3"
+    },
+    "autoload":{
+        "psr-4":{
+            "Core\\": "Core/",
+            "App\\": "App/"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+[14-Nov-2022 21:35:02 Europe/Berlin] Uncaught exception: 'PDOException'with message: 'SQLSTATE[HY000] [1049] Unknown database 'mvc''
+Stack trace:#0 C:\xampp\htdocs\My_MVC_framework\Core\Model.php(25): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\My_MVC_framework\App\Models\Post.php(22): Core\Model::getDB()
+#2 C:\xampp\htdocs\My_MVC_framework\App\Controllers\Posts.php(13): App\Models\Post::getAll()
+#3 [internal function]: App\Controllers\Posts->indexAction()
+#4 C:\xampp\htdocs\My_MVC_framework\Core\Controller.php(17): call_user_func_array(Array, Array)
+#5 C:\xampp\htdocs\My_MVC_framework\Core\Router.php(76): Core\Controller->__call('index', Array)
+#6 C:\xampp\htdocs\My_MVC_framework\public\index.php(59): Core\Router->dispatch('posts/index')
+#7 {main}
+Thrown in 'C:\xampp\htdocs\My_MVC_framework\Core\Model.php' on line 25
+[14-Nov-2022 21:37:23 Europe/Berlin] Uncaught exception: 'PDOException'with message: 'SQLSTATE[HY000] [1049] Unknown database 'mvc''
+Stack trace:#0 C:\xampp\htdocs\PHoenixP\Core\Model.php(25): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\PHoenixP\App\Models\Post.php(22): Core\Model::getDB()
+#2 C:\xampp\htdocs\PHoenixP\App\Controllers\Posts.php(13): App\Models\Post::getAll()
+#3 [internal function]: App\Controllers\Posts->indexAction()
+#4 C:\xampp\htdocs\PHoenixP\Core\Controller.php(17): call_user_func_array(Array, Array)
+#5 C:\xampp\htdocs\PHoenixP\Core\Router.php(76): Core\Controller->__call('index', Array)
+#6 C:\xampp\htdocs\PHoenixP\public\index.php(59): Core\Router->dispatch('posts/index')
+#7 {main}
+Thrown in 'C:\xampp\htdocs\PHoenixP\Core\Model.php' on line 25
