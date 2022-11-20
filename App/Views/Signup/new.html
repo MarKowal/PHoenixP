@@ -4,15 +4,24 @@
 {% block body %}
 
     <h1>Sign up!</h1>
+
+    {% if user.errors is not empty %}
+        <p>Errors:</p>
+        <ul>
+            {% for error in user.errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     
     <form method="post" action="/signup/create">
         <div>
             <label for="inputName">Name</label>
-            <input type="text" name="name" id="inputName" placeholder="name" autofocus>
+            <input type="text" name="name" id="inputName" placeholder="name" autofocus value="{{user.name}}">
         </div>
         <div>
             <label for="inputEmail">Email address</label>
-            <input type="email" name="email" id="inputEmail" placeholder="email address">
+            <input type="email" name="email" id="inputEmail" placeholder="email address" value="{{user.email}}">
         </div>
         <div>
             <label for="inputPassword">Password</label>
