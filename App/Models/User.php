@@ -49,10 +49,6 @@ class User extends \Core\Model{
             $this->errors[] = 'Email already taken';
         }
         
-        if ($this->password != $this->passwordConfirm){
-            $this->errors[] = 'Password must match confirmation';
-        }
-
         if (strlen($this->password)<6){
             $this->errors[] = 'Please enter at least 6 characters for the password';
         }
