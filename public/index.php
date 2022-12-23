@@ -36,6 +36,7 @@ $router->add('', ['controller'=>'Home', 'action'=>'index']);
 //$router->add('posts/new', ['controller'=>'Posts', 'action'=>'new']);
 //$router->add('blog', ['controller'=>'Blog', 'action'=>'index']);
 //$router->add('products/list', ['controller'=>'Products', 'action'=>'list']);
+$router->add('login', ['controller' => 'Login', 'action' => 'new']);
 $router->add('{controller}/{action}');
 //$router->add('admin/{action}/{controller}');
 $router->add('{controller}/{id:\d+}/{action}');
