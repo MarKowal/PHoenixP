@@ -2,11 +2,17 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Models\User;
 
 class Login extends \Core\Controller{
     public function newAction(){
         View::renderTemplate('Login/new.html');
-        //TUTAJ SKOŃCZYLEM 4.12.2022
+    }
+
+    public function createAction(){
+        //echo ($_REQUEST['email'].', '.$_REQUEST['password']);
+        $user = User::findByEmail($_POST['email']);
+        var_dump($user);
     }
 
 }
