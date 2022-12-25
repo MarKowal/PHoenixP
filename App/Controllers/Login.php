@@ -19,8 +19,12 @@ class Login extends \Core\Controller{
         if($user){
             //header('Location: http://'.$_SERVER['HTTP_HOST'].'/', true, 303);
             //exit;
+
+            //delete the old session:
+            session_regenerate_id(true);
+
             $_SESSION['user_id'] = $user->id;
-            
+
             $this->redirect('/');
         } else{
             View::renderTemplate('Login/new.html', ['email' => $_POST['email'], ]);
