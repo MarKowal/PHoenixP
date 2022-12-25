@@ -5,6 +5,13 @@
 
     <h1>Welcome!</h1>
     
+    {% if session.user_id %}
+        User with ID {{session.user_id}} is logged in.
+        <p></p><a href="/logout">Log out</a>
+    {% else %}    
     <a href="/signup/new">Sign up</a>
+    <p></p>
+    <a href="/login/new">Log in</a>
+    {% endif %}
 
 {% endblock %}
