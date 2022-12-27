@@ -24,7 +24,9 @@ class Login extends \Core\Controller{
 
             //delete the old session id number:
             Auth::login($user);
-            $this->redirect('/');
+            //$this->redirect('/');
+            $this->redirect(Auth::getReturnToPage());
+
         } else{
             View::renderTemplate('Login/new.html', ['email' => $_POST['email'], ]);
         }

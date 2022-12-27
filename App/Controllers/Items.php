@@ -11,7 +11,9 @@ class Items extends \Core\Controller{
 
         if (! Auth::isLoggedIn()){
             //exit('access denied');
+            Auth::rememberRequestedPage();
             $this->redirect('/login');
+            
         } else{
             View::renderTemplate('Items/index.html');
         }
