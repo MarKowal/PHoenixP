@@ -4,6 +4,7 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Models\User;
 use \App\Auth;
+use \App\Flash;
 
 
 class Login extends \Core\Controller{
@@ -24,16 +25,24 @@ class Login extends \Core\Controller{
 
             //delete the old session id number:
             Auth::login($user);
+            Flash::addMessage('Login successful');
             //$this->redirect('/');
             $this->redirect(Auth::getReturnToPage());
 
         } else{
+            Flash::addMessage('Login unsuccessful, please try again', Flash::WARNING);
+
             View::renderTemplate('Login/new.html', ['email' => $_POST['email'], ]);
         }
     }
 
     public function destroyAction(){
         Auth::logout();
+        $this->redirect('/login/show-logout-message');
+    }
+
+    public function showLogoutMessageAction(){
+        Flash::addMessage('Logout successful');
         $this->redirect('/');
     }
 
