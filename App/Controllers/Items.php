@@ -5,18 +5,11 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Auth;
 
-class Items extends \Core\Controller{
+class Items extends Authenticated{
 
     public function indexAction(){
-
-        if (! Auth::isLoggedIn()){
-            //exit('access denied');
-            Auth::rememberRequestedPage();
-            $this->redirect('/login');
-            
-        } else{
-            View::renderTemplate('Items/index.html');
-        }
+        //$this->requireLogin();
+        View::renderTemplate('Items/index.html');
     }
 
 }

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Auth;
 
 class Home extends \Core\Controller {
     protected function before(){
@@ -28,6 +29,7 @@ class Home extends \Core\Controller {
                 'name' => 'Dave',
                 'colours' => ['red', 'green', 'blue', 'yellow']
             ]*/
+            //['user' => Auth::getUser()]    
         );
     }
 }

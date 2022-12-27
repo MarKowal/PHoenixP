@@ -71,8 +71,9 @@ class User extends \Core\Model{
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
         //$stmt->setFetchMode(PDO::FETCH_CLASS,'App\Models\User');
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
@@ -90,6 +91,20 @@ class User extends \Core\Model{
         }
 
     }
+
+    public static function findByID($id){
+        $sql = 'SELECT * FROM users WHERE id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        //$stmt->setFetchMode(PDO::FETCH_CLASS,'App\Models\User');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
 
 }
 
