@@ -6,6 +6,8 @@
 //require '../App/Controllers/Posts.php';
 //require '../Core/Router.php';
 
+//ini_set('session.cookie_lifetime','864000');
+
 //Twig:
 require_once dirname(__DIR__).'/vendor/autoload.php';
 //Twig_Autoloader::register();

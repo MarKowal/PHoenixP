@@ -9,6 +9,8 @@ class Config{
 
     const SHOW_ERRORS = true;
 
+    const SECRET_KEY = 'lPXkgxeMCyR82AOseuHxjM5EJJeQS5FA';
+
 }
 
 ?>
