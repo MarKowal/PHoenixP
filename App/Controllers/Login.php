@@ -26,7 +26,10 @@ class Login extends \Core\Controller{
             //exit;
 
             //delete the old session id number:
-            Auth::login($user);
+            Auth::login($user, $remember_me);
+
+
+
             Flash::addMessage('Login successful');
             //$this->redirect('/');
             $this->redirect(Auth::getReturnToPage());
