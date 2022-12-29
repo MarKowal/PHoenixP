@@ -8,12 +8,15 @@
         }
     ],
     "require": {
-        "twig/twig": "v3.4.3"
+        "twig/twig": "v3.4.3",
+        "phpmailer/phpmailer": "^6.7"
     },
     "autoload":{
         "psr-4":{
             "Core\\": "Core/",
             "App\\": "App/"
         }
-    }
+    },
+
+    "phpmailer/phpmailer": "^6.7.1"
 }
