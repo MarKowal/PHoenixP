@@ -24,6 +24,7 @@ class Auth{
             setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
         }
         session_destroy();
+        static::forgetLogin();
     }
 
     /*public static function isLoggedIn(){
@@ -51,13 +52,27 @@ class Auth{
 
         if($cookie){
             $remembered_login = RememberedLogin::findByToken($cookie);
-        }
 
-        if($remembered_login){
-            $user = $remembered_login->getUser();
-            static::login($user, false);
-            
-            return $user;
+            if($remembered_login && ! $remembered_login->hasExpired()){
+                $user = $remembered_login->getUser();
+                static::login($user, false);
+                
+                return $user;
+            }
+        }
+    }
+
+    protected static function forgetLogin(){
+        $cookie = $_COOKIE['remember_me'] ?? false;
+        
+        if($cookie){
+            $remembered_login = RememberedLogin::findByToken($cookie);
+
+            if($remembered_login){
+                $remembered_login->delete();
+            }
+
+            setcookie('remember_me', '', time()-3600);
         }
     }
 
