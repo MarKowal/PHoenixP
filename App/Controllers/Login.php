@@ -18,13 +18,18 @@ class Login extends \Core\Controller{
         //var_dump($user);
 
         $user = User::authenticate($_POST['email'], $_POST['password']);
+        $remember_me = isset($_POST['remember_me']);
+        
 
         if($user){
             //header('Location: http://'.$_SERVER['HTTP_HOST'].'/', true, 303);
             //exit;
 
             //delete the old session id number:
-            Auth::login($user);
+            Auth::login($user, $remember_me);
+
+
+
             Flash::addMessage('Login successful');
             //$this->redirect('/');
             $this->redirect(Auth::getReturnToPage());
@@ -32,7 +37,10 @@ class Login extends \Core\Controller{
         } else{
             Flash::addMessage('Login unsuccessful, please try again', Flash::WARNING);
 
-            View::renderTemplate('Login/new.html', ['email' => $_POST['email'], ]);
+            View::renderTemplate('Login/new.html', [
+                'email' => $_POST['email'], 
+                'remember_me' => $remember_me
+            ]);
         }
     }
 
