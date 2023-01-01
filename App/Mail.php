@@ -10,7 +10,7 @@ require '../vendor/autoload.php';
 
 class Mail{
     //public static function send($to, $subject, $text, $html){
-    public static function send($to, $subject, $text){
+    public static function send($to, $subject, $text, $html){
 
         //from GitHub:
         
@@ -46,8 +46,8 @@ class Mail{
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $text;
-            //$mail->AltBody = 'No pewka! This is the body in plain text for non-HTML mail clients';
+            $mail->Body    = $html;
+            $mail->AltBody = $text;;
 
             $mail->send();
             echo 'Message has been sent';
