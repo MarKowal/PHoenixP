@@ -20,7 +20,8 @@ class Mail{
 
             //Server settings
             $mail->isSMTP();  
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->SMTPDebug = 0;                      // !!! wartość 0 nie pokazuje bebechów CLIENT->SERVER
             $mail->Host = "smtp.gmail.com";                                           //Send using SMTP
             //$mail->Host = gethostbyname('smtp.gmail.com');
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -29,7 +30,7 @@ class Mail{
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
-            $mail->CharSet = 'UTF-8'; //POLSKIE OGONKI
+            $mail->CharSet = 'UTF-8'; // !!! POLSKIE OGONKI
 
             //Recipients
             $mail->setFrom('marcin.kowalski.programista@gmail.com','Marcin');
