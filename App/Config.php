@@ -11,6 +11,8 @@ class Config{
 
     const SECRET_KEY = 'lPXkgxeMCyR82AOseuHxjM5EJJeQS5FA';
 
+    const GMAIL_USERNAME = 'marcin.kowalski.programista@gmail.com';
+    const GMAIL_PASSWORD = 'tdhaxqxbvwcxnvfo';
 }
 
 ?>

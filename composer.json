@@ -16,7 +16,6 @@
             "Core\\": "Core/",
             "App\\": "App/"
         }
-    },
+    }
 
-    "phpmailer/phpmailer": "^6.7.1"
 }
