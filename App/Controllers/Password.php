@@ -19,7 +19,10 @@ class Password extends \Core\Controller{
 
     public function resetAction(){
         $token = $this->route_params['token'];
-        echo $token;
+        //echo $token;
+        $user = User::findByPasswordReset($token);
+        echo "<pre>"; 
+        var_dump($user);
     }
 
 }
