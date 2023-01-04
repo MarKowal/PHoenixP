@@ -27,6 +27,7 @@ spl_autoload_register(function($class){
 error_reporting(E_ALL);
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
+
 session_start();
 
 $router = new Core\Router();
@@ -44,6 +45,7 @@ $router->add('{controller}/{action}');
 //$router->add('admin/{action}/{controller}');
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+$router->add('password/reset/{token:[\da-f]+}', ['controller' => 'password', 'action' => 'reset']);
 
 //pokazuje routing table:
 /*echo '<pre>';

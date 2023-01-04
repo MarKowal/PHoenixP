@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Auth;
+use \App\Mail;
 
 class Home extends \Core\Controller {
     protected function before(){
@@ -24,6 +25,12 @@ class Home extends \Core\Controller {
             'name' => 'Dave',
             'colours' => ['red', 'green', 'blue']]
         );*/
+
+        //Mail::send('mr_kowalski@interia.pl', 'Wiadomość numer 3', 'Email <b>wysłany!</b> ą ę ć ś ź ż ł ń');
+        //$mail = new Mail;
+        //$mail->send();
+
+
         View::renderTemplate('Home/index.html', 
             /*[
                 'name' => 'Dave',
