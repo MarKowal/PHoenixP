@@ -19,14 +19,31 @@ class Password extends \Core\Controller{
 
     public function resetAction(){
         $token = $this->route_params['token'];
-        //echo $token;
+
+        $user = $this->getUserOrExit($token);
+
         $user = User::findByPasswordReset($token);
-        //echo "<pre>"; 
-        //var_dump($user);
+        
+        View::renderTemplate('Password/reset.html', ['token' => $token]);
+    }
+
+    public function resetPasswordAction(){
+        $token = $_POST['token'];
+
+        $user = $this->getUserOrExit($token);
+
+        echo "(here will be reset users passowrd)";
+    }
+
+    protected function getUserOrExit($token){
+        $user = User::findByPasswordReset($token);
+        
         if($user){
-            View::renderTemplate('Password/reset.html');
+            return $user;
+
         } else {
-            echo "Password reset token invalid.";
+            View::renderTemplate('Password/token_expired.html');
+            exit;
         } 
     }
 
