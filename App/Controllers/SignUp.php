@@ -17,6 +17,8 @@ class Signup extends \Core\Controller{
             //redirect to success site:
             //header('Location: http://'.$_SERVER['HTTP_HOST'].'/signup/success', true, 303);
             //exit;
+            $user->sendActivationEmail();
+
             $this->redirect('/signup/success');
         } else {
             View::renderTemplate('Signup/new.html', ['user' => $user]);

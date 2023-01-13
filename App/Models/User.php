@@ -24,7 +24,11 @@ class User extends \Core\Model{
 
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash)';
+            $token = new Token();
+            $hashed_token = $token->getHash();
+            $this->activation_token = $token->getValue();
+
+            $sql = 'INSERT INTO users (name, email, password_hash, activation_hash) VALUES (:name, :email, :password_hash, :activation_hash)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -32,6 +36,7 @@ class User extends \Core\Model{
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            $stmt->bindValue(':activation_hash', $hashed_token, PDO::PARAM_STR);
 
             return $stmt->execute();
         } 
@@ -222,6 +227,15 @@ class User extends \Core\Model{
         }
 
         return false;
+    }
+
+    public function sendActivationEmail(){
+        $url = 'http://'.$_SERVER['HTTP_HOST'].'/signup/activate/'.$this->activation_token;
+
+        $text = View::getTemplate('Signup/activation_email.txt', ['url' => $url]);
+        $html = View::getTemplate('Signup/activation_email.html', ['url' => $url]);
+
+        Mail::send($this->email, 'Account activation', $text, $html);
     }
 
 
