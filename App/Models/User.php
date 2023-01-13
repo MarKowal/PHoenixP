@@ -238,6 +238,19 @@ class User extends \Core\Model{
         Mail::send($this->email, 'Account activation', $text, $html);
     }
 
+    public static function activate($value){
+        $token = new Token($value);
+        $hashed_token = $token->getHash();
+
+        $sql = 'UPDATE users SET is_active = 1, activation_hash = null WHERE activation_hash = :hashed_token';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':hashed_token', $hashed_token, PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
 
 }
 
