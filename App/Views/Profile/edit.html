@@ -9,16 +9,25 @@
     <script>
         //SIGNUP VALIDATION by JavaScript https://jqueryvalidation.org/validate/
         $(document).ready(function(){
+
+            var userId = '{{ user.id }}'
+
             $('#formSProfile').validate({
                 rules: {
                     name: 'required',
                     email: {
                         required: true,
                         email: true,
-                        remote: '/account/validateEmail'
+                        remote: {
+                            url: '/account/validateEmail',
+                            data: {
+                                ignore_id: function(){
+                                    return userId;
+                                }
+                            }
+                        }
                     },
                     password: {
-                        required: true,
                         minlength: 6,
                         validPassword: true
                     }
@@ -50,7 +59,7 @@
         </ul>
     {% endif %}
     
-    <form method="post" id="formProfile">
+    <form method="post" id="formProfile" action="/profile/update">
         <div>
             <label for="inputName">Name</label>
             <input type="text" name="name" id="inputName" placeholder="name" value="{{user.name}}" required>
@@ -61,7 +70,8 @@
         </div>
         <div>
             <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" placeholder="password" required>
+            <input type="password" name="password" id="inputPassword" placeholder="password" aria-describedby="helpBlock">
+            <span id="helpBlock">Leave blank to keep current password.</span>
         </div>
       
         <button type="submit">Save</button>
